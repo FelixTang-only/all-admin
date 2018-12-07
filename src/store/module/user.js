@@ -23,7 +23,8 @@ export default {
     messageUnreadList: [],
     messageReadedList: [],
     messageTrashList: [],
-    messageContentStore: {}
+    messageContentStore: {},
+    loginError: ''
   },
   mutations: {
     setAvator (state, avatorPath) {
@@ -65,24 +66,35 @@ export default {
       const msgItem = state[from].splice(index, 1)[0]
       msgItem.loading = false
       state[to].unshift(msgItem)
+    },
+    setLoginError (state, loginError) {
+      state.loginError = loginError
     }
   },
   getters: {
     messageUnreadCount: state => state.messageUnreadList.length,
     messageReadedCount: state => state.messageReadedList.length,
-    messageTrashCount: state => state.messageTrashList.length
+    messageTrashCount: state => state.messageTrashList.length,
+    loginError: state => state.loginError
   },
   actions: {
     // 登录
     handleLogin ({ commit }, {userName, password}) {
       userName = userName.trim()
       return new Promise((resolve, reject) => {
+        // console.log(111)
         login({
           userName,
           password
         }).then(res => {
+          // console.log(res)
           const data = res.data
-          commit('setToken', data.token)
+          if (Object.keys(data).length === 0) {
+            commit('setLoginError', '用户名或密码错误,请检查下')
+            return
+          }
+          // console.log(data)
+          commit('setToken', data[0].token)
           resolve()
         }).catch(err => {
           reject(err)
@@ -110,7 +122,9 @@ export default {
       return new Promise((resolve, reject) => {
         try {
           getUserInfo(state.token).then(res => {
+          // getUserInfo('admin').then(res => {
             const data = res.data
+            // console.log(res)
             commit('setAvator', data.avator)
             commit('setUserName', data.name)
             commit('setUserId', data.user_id)
@@ -129,6 +143,7 @@ export default {
     getUnreadMessageCount ({ state, commit }) {
       getUnreadCount().then(res => {
         const { data } = res
+        // console.log(data)
         commit('setMessageCount', data)
       })
     },
@@ -137,6 +152,7 @@ export default {
       return new Promise((resolve, reject) => {
         getMessage().then(res => {
           const { unread, readed, trash } = res.data
+          // console.log(unread)
           commit('setMessageUnreadList', unread.sort((a, b) => new Date(b.create_time) - new Date(a.create_time)))
           commit('setMessageReadedList', readed.map(_ => {
             _.loading = false

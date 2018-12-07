@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Qs from 'qs'
 import store from '@/store'
 // import { Spin } from 'iview'
 const addErrorLog = errorInfo => {
@@ -21,7 +22,7 @@ class HttpRequest {
     const config = {
       baseURL: this.baseUrl,
       headers: {
-        //
+        'Content-Type': 'application/x-www-form-urlencoded'
       }
     }
     return config
@@ -56,9 +57,11 @@ class HttpRequest {
     })
   }
   request (options) {
+    options.data = Qs.stringify(options.data) // 特殊处理fromdata格式
     const instance = axios.create()
     options = Object.assign(this.getInsideConfig(), options)
     this.interceptors(instance, options.url)
+    // console.log(Qs.stringify(options.data))
     return instance(options)
   }
 }

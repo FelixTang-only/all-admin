@@ -1,6 +1,11 @@
 export default {
   home: 'Home',
   components: 'Components',
+  wx: 'wx',
+  wx_user_info: 'wx_user_info',
+  users: 'users',
+  power_admin: 'power_admin',
+  admin_edit: 'admin_edit',
   count_to_page: 'Count-to',
   tables_page: 'Table',
   split_pane_page: 'Split-pane',

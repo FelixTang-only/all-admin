@@ -1,6 +1,11 @@
 export default {
   home: '首页',
   components: '组件',
+  wx: '微信公众号&小程序管理',
+  users: '用户管理',
+  wx_user_info: '用户信息',
+  power_admin: '权限管理',
+  admin_edit: '信息修改',
   count_to_page: '数字渐变',
   tables_page: '多功能表格',
   split_pane_page: '分割窗口',

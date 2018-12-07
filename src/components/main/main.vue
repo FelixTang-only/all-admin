@@ -115,6 +115,7 @@ export default {
         params = route.params
         query = route.query
       }
+      // name = 'home'
       if (name.indexOf('isTurnByHref_') > -1) {
         window.open(name.split('_')[1])
         return
