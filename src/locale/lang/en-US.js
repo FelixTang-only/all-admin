@@ -3,6 +3,7 @@ export default {
   components: 'Components',
   wx: 'wx',
   wx_user_info: 'wx_user_info',
+  wx_gzUser: 'wx_gzUser',
   users: 'users',
   power_admin: 'power_admin',
   admin_edit: 'admin_edit',

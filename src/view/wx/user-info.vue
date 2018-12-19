@@ -4,6 +4,7 @@
       <tables ref="tables1" :loading="loading1" editable v-model="tableData1" :columns="columns1"/>
       <Button style="margin: 10px 0;" type="primary" @click="exportExcel1">导出为Csv文件</Button>
       <Button style="margin: 10px 5px;" type="primary" @click="search1">刷新</Button>
+      <div>用户总计：{{ total }}个</div>
     </Card>
     <Card>
       <tables ref="tables2" :loading="loading2" editable searchable search-place="top" v-model="tableData2" :columns="columns2" @on-search="search2"/>
@@ -28,6 +29,7 @@ export default {
         {title: 'openid', key: 'openid', editable: false}
       ],
       tableData1: [],
+      total: '',
       columns2: [
         // {title: 'subscribe', key: 'subscribe', sortable: true},
         {title: 'openid', key: 'openid', editable: false},
@@ -54,9 +56,10 @@ export default {
       this.loading1 = true
       getUserOpenidList().then(res => {
         this.loading1 = false
-        console.log(res)
+        // console.log(res)
         const arr = []
         const backData = res.data.return_data.data.openid
+        this.total = res.data.return_data.total
         backData.forEach(item => {
           arr.push({'openid': item})
         })

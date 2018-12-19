@@ -5,6 +5,7 @@ export default {
   users: '用户管理',
   power_admin: '权限管理',
   wx_user_info: '用户信息',
+  wx_gzUser: '公众号H5用户',
   admin_edit: '信息修改',
   count_to_page: '数字渐变',
   tables_page: '多功能表格',

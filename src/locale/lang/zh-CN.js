@@ -4,6 +4,7 @@ export default {
   wx: '微信公众号&小程序管理',
   users: '用户管理',
   wx_user_info: '用户信息',
+  wx_gzUser: '公众号H5用户',
   power_admin: '权限管理',
   admin_edit: '信息修改',
   count_to_page: '数字渐变',

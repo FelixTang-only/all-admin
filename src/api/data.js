@@ -50,3 +50,19 @@ export const getUserOpenidList = () => {
     method: 'get'
   })
 }
+
+export const getGzhUserInfoData = userName => {
+  return axios.request({
+    url: 'bg/get_info/getGzhUser',
+    data: userName,
+    method: 'post'
+  })
+}
+
+export const updateGzhUser = data => {
+  return axios.request({
+    url: 'bg/get_info/updateGzhUser',
+    data: data,
+    method: 'post'
+  })
+}

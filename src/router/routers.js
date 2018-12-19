@@ -137,13 +137,13 @@ export default [
     component: Main,
     children: [
       {
-        path: 'count_to_page',
-        name: 'count_to_page',
+        path: 'wx_gzUser',
+        name: 'wx_gzUser',
         meta: {
-          icon: 'md-trending-up',
-          title: '数字渐变'
+          icon: 'md-contact',
+          title: '公众号H5用户'
         },
-        component: () => import('@/view/components/count-to/count-to.vue')
+        component: () => import('@/view/wx/gzUser.vue')
       },
       {
         path: 'wx_user_info',
